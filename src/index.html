@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Opener</title>
+    <link href="index.css" rel="stylesheet"/>
+  </head>
+
+  <body>
+    <div class="main_content">
+      <input id="directory_path" placeholder="Please Input Directroy Path" type="text" autofocus onkeypress="enterKeyDown(event.key);" />
+      <button id="open_btn">OPEN</button>
+    </div>
+    <div>
+      <p class="example">e.g.(/Users/hoge | //tera/team | \\tera\team | ¥¥tera¥team | G:\team)<span class="alertarea"></span></p>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
