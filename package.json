@@ -1,0 +1,15 @@
+{
+  "name": "Gate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron src/main.js"
+  },
+  "keywords": [],
+  "author": "@Yusuke Kubo",
+  "devDependencies": {
+    "electron": "^2.0.4",
+    "electron-packager": "^6.1.0"
+  }
+}
