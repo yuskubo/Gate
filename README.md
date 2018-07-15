@@ -39,7 +39,7 @@ $ npm run start
 ```
 
 ## Build
-Running the following commands, at the top of the project directory, will be created the package directory Gate-darwin-x64.  
+Running the following commands, at the top of the project directory, will be created the package directory Gate-darwin-x64.
 "Gate.app" exists in this directory.
 ```
 $ npm install electron-packager --save-dev
