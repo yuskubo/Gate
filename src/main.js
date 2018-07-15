@@ -10,7 +10,7 @@ const url = require('url');
 const path = require('path');
 const menuTemplate = [
   {
-    label: 'Opener',
+    label: 'Gate',
     submenu:[
       {
         label: 'About',
@@ -100,7 +100,7 @@ function showAboutDialog() {
   dialog.showMessageBox({
     type: 'info',
     buttons: ['OK'],
-    message: 'About Opener',
+    message: 'About Gate',
     detail: 'This App is able to open any path.'
   });
 }
