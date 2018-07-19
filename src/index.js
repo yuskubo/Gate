@@ -43,7 +43,7 @@ function openDirectoryPath(open_path) {
 }
 
 function replaceSeparatorForMac(value) {
-  open_path = value.replace(/\\|¥/g, '/').replace(/\/\/[^\/]*/, '/Volumes').replace(/^G:|^g:/, '/Volumes/GoogleDrive');
+  open_path = value.replace(/\\|¥/g, '/').replace(/\/\/[^\/]*/, '/Volumes').replace(/^G:|^g:/, '/Volumes/GoogleDrive').replace(/^[a-zA-Z]:/, '/Volumes');
   if (fs.existsSync(open_path)) {
     openDirectoryPath(open_path);
   } else {
