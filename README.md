@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/icon.png" alt="application-icon">Gate</h1>
+<h1 align="center"><img src="https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/icon.png" alt="application-icon" width="128" height="128">Gate</h1>
 Gate is an application for opening a path without concern for the difference between Mac and Windows.
 ![description gif](https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/description.gif)
 
