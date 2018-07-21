@@ -1,12 +1,12 @@
 <img src="https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/readme-top.png" alt="application-icon" width="200" height="100">
 
-Gate is an application for opening a path without concern for the difference between Mac and Windows.
+Gate is an application for opening a path without concern for the difference between Mac and Windows when you use Mac.
 ![description gif](https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/description.gif)
 
 ## Description
 By using this application 'Gate', you can open the path of windows PC with mac PC.  
-When you type a path and click the open button, the Finder of Mac opens.  
-If you type the pathname of the file that you would like to open, you can open the file.  
+When you type a path and click the "Open" button or press "Enter", the Finder of Mac opens.  
+In addition, if you type the pathname of the file that you would like to open, you can open the file.  
 The Gate enables to open the following examples.  
 For Example:  
 ```
@@ -14,6 +14,7 @@ G:/teamdrive/development/test
 G:¥teamdrive¥development¥test
 G:\teamdrive\development\test
 G:\teamdrive\development\test\specification.xlsx
+
 //tera/team/development/test
 ¥¥tera¥team¥development¥test
 \\tera\team\development\test
