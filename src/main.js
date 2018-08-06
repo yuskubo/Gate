@@ -70,6 +70,11 @@ let open_path;
 let result;
 let menu = Menu.buildFromTemplate(menuTemplate);
 
+require('update-electron-app')({
+  repo: 'zetton-31/Gate',
+  updateInterval: '1 hour'
+});
+
 function createWindow() {
   Menu.setApplicationMenu(menu);
   mainWindow = new BrowserWindow({
