@@ -47,7 +47,7 @@ Running the following commands, at the top of the project directory, will be cre
 "Gate.app" exists in this directory.
 ```
 $ npm install electron-packager --save-dev
-$ npx electron-packager src Gate --platform=darwin --arch=x64 --overwrite --icon=resources/icon/Gate.icns
+$ npx electron-packager src Gate --platform=darwin --arch=x64 --overwrite --icon=resources/icon/Gate.icns --out=releases/package
 ```
 
 ## License
