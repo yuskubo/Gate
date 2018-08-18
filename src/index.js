@@ -5,80 +5,62 @@ const shell = require('electron').shell;
 const fs = require('fs');
 
 const alertMessage = 'No such file or directory';
+const enter = 'Enter'
+const escape = 'Escape'
+const keydown = 'keydown'
+const esc_key_down = 'esc_key_down'
 
 let open_btn;
+let path;
 let open_path;
 let directory_path;
 let downed_key;
 let result;
 
-function outputAlert() {
+const outputAlert = () => {
   document.getElementsByClassName('alertarea')[0].innerHTML = alertMessage;
 }
 
-function currentWindowClose() {
+const currentWindowClose = () => {
   ipcRenderer.send('window_close');
 }
 
-function currentWindowMinimize() {
+const currentWindowMinimize =() => {
   ipcRenderer.send('window_minimize');
 }
 
-function openDirectoryPath(open_path) {
-  if (fs.statSync(open_path).isDirectory()) {
-    result = shell.showItemInFolder(open_path);
-    if (result) {
-      currentWindowClose();
-    } else {
-      outputAlert();
-    }
-  } else {
-    result = shell.openItem(open_path);
-    if (result) {
-      currentWindowClose();
-    } else {
-      outputAlert();
-    }
-  }
-}
-
-function replaceSeparatorForMac(value) {
-  open_path = value.replace(/\\|¥/g, '/').replace(/\/\/[^\/]*/, '/Volumes').replace(/^G:|^g:/, '/Volumes/GoogleDrive').replace(/^[a-zA-Z]:/, '/Volumes');
-  if (fs.existsSync(open_path)) {
-    openDirectoryPath(open_path);
+const openDirectoryPath = open_path => {
+  if (shell.showItemInFolder(open_path)) {
+    currentWindowClose();
   } else {
     outputAlert();
   }
 }
 
-function replaceSeparatorForWin(value) {
-  open_path = value.replace(/\//g, '\\').replace('smb:', '');
-  openDirectoryPath(open_path);
+const replaceSeparatorForMac = value => {
+  path = value.replace(/\\|¥/g, '/').replace(/\/\/[^\/]*/, '/Volumes').replace(/^G:|^g:/, '/Volumes/GoogleDrive').replace(/^[a-zA-Z]:/, '/Volumes');
+  if (fs.existsSync(path)) {
+    openDirectoryPath(path);
+  } else {
+    outputAlert();
+  }
 }
 
 open_btn = document.getElementById('open_btn');
 directory_path = document.getElementById('directory_path')
 open_btn.addEventListener('click', function() {
-  if (process.platform === 'darwin') {
-    replaceSeparatorForMac(directory_path.value);
-  } else {
-    replaceSeparatorForWin(directory_path.value);
-  }
+  replaceSeparatorForMac(directory_path.value);
 });
 
-document.addEventListener('keydown', function(){
+document.addEventListener(keydown, function(){
   downed_key = event.key
-  if (downed_key === 'Escape'){
-    ipcRenderer.send('esc_key_down')
+  if (downed_key === escape){
+    ipcRenderer.send(esc_key_down)
   }
 });
 
-function enterKeyDown(key_code) {
-	if(key_code === 'Enter') {
-    if (process.platform === 'darwin') {
-      replaceSeparatorForMac(directory_path.value);
-    } else {
-      replaceSeparatorForWin(directory_path.value);
-    }
+const enterKeyDown = key_code => {
+	if(key_code === enter) {
+    replaceSeparatorForMac(directory_path.value);
 	}
 }
