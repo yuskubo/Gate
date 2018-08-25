@@ -25,10 +25,6 @@ const currentWindowClose = () => {
   ipcRenderer.send('window_close');
 }
 
-const currentWindowMinimize =() => {
-  ipcRenderer.send('window_minimize');
-}
-
 const openDirectoryPath = open_path => {
   if (shell.showItemInFolder(open_path)) {
     currentWindowClose();
@@ -53,9 +49,9 @@ open_btn.addEventListener('click', function() {
 });
 
 document.addEventListener(keydown, function(){
-  downed_key = event.key
+  downed_key = event.key;
   if (downed_key === escape){
-    ipcRenderer.send(esc_key_down)
+    ipcRenderer.send(esc_key_down);
   }
 });
 
