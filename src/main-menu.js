@@ -52,7 +52,7 @@ const showAboutDialog = () => {
     type: 'info',
     buttons: ['OK'],
     message: 'Gate',
-    detail: 'Version 1.0.0'
+    detail: 'Version 1.0.1'
   });
 }
 
