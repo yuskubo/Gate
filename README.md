@@ -1,24 +1,31 @@
 <img src="https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/readme-top.png" alt="application-icon" width="200" height="100">
 
-Gate is an application for opening a path without concern for the difference between Mac and Windows when you use Mac.
+Gate is an application for opening a folder on Finder.
+By using this application 'Gate', you can open the path of Windows with Mac.You don't have to care about difference between path delimiters of Mac and Windows.
 ![description gif](https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/description.gif)
 
 ## Description
-By using this application 'Gate', you can open the path of windows PC with mac PC.  
-When you type a path and click the "Open" button or press "Enter", the Finder of Mac opens.  
-In addition, if you type the pathname of the file that you would like to open, you can open the file.  
-The Gate enables to open the following examples.  
-For Example:  
-```
-G:/teamdrive/development/test
-G:¥teamdrive¥development¥test
-G:\teamdrive\development\test
-G:\teamdrive\development\test\specification.xlsx
+You can open not only the path of local folder but also the path of the folder on Google Drive and NAS.
+Therefore, Gate is particularly effective for sharing a path on the team that Mac users and Windows users belong on.
 
-//tera/team/development/test
-¥¥tera¥team¥development¥test
-\\tera\team\development\test
-\\tera\team\development\test\specification.xlsx
+How To Use:
+When you input a path and click the "Open" button or press "Enter", Finder of Mac opens.In addition, when you type the file name that you would like to open, the file is selected on Finder in opening the folder.
+
+This application enables to open the following examples.
+
+For Example:
+```
+/users/hoge/demo/demo.rtf
+
+//G:/teamdrive/share
+¥¥G:¥teamdrive¥share
+\\G:\teamdrive\share
+\\G:\teamdrive\share\demo.rtf
+
+//tera/team/share
+¥¥tera¥team¥share
+\\tera\team\share
+\\tera\team\share\demo.rtf
 ```
 
 ## Contributing
@@ -34,12 +41,12 @@ If you would like to fix the Gate to incorporate your ideas or suggestions into 
 ## Environments
 * npm:  6.1.0
 * node: 10.5.0
-* electron: 2.0.5
+* electron: 2.0.8
 
 ## Development
 Running the following commands, at the top of the project directory, will start Gate.
 ```
-$ npm run start
+$ npm start
 ```
 
 ## Build
