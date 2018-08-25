@@ -1,14 +1,14 @@
 <img src="https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/readme-top.png" alt="application-icon" width="200" height="100">
 
-Gate is an application for opening a folder on Finder.
+Gate is an application for opening a folder on Finder.  
 By using this application 'Gate', you can open the path of Windows with Mac.You don't have to care about difference between path delimiters of Mac and Windows.
 ![description gif](https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/description.gif)
 
 ## Description
-You can open not only the path of local folder but also the path of the folder on Google Drive and NAS.
+You can open not only the path of local folder but also the path of the folder on Google Drive and NAS.  
 Therefore, Gate is particularly effective for sharing a path on the team that Mac users and Windows users belong on.
 
-How To Use:
+How To Use:  
 When you input a path and click the "Open" button or press "Enter", Finder of Mac opens.In addition, when you type the file name that you would like to open, the file is selected on Finder in opening the folder.
 
 This application enables to open the following examples.
