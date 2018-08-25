@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "@Yusuke Kubo",
   "devDependencies": {
-    "electron": "^2.0.4",
+    "electron": "^2.0.8",
     "electron-packager": "^6.1.0"
   }
 }
