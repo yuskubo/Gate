@@ -5,72 +5,45 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 const Menu = electron.Menu;
-const dialog = electron.dialog;
 const url = require('url');
 const path = require('path');
-const menuTemplate = [
-  {
-    label: 'Gate',
-    submenu:[
-      {
-        label: 'About',
-        accelerator: 'CmdOrCtrl+Shift+A',
-        click: function() { showAboutDialog(); }
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Quit',
-        accelerator: 'CmdOrCtrl+Q',
-        click: function() { app.quit() }
+const menuTemplate = require('./main-menu');
+const menuForOpening = [{
+  label: 'Window',
+  submenu: [
+    {role: 'minimize'},
+    {role: 'close'},
+    {
+      label: 'Open Window',
+      accelerator: 'CmdOrCtrl+0',
+      enabled: false,
+    }
+  ]
+}];
+const menuForClosing = [{
+  label: 'Window',
+  submenu: [
+    {role: 'minimize'},
+    {role: 'close'},
+    {
+      label: 'Open Window',
+      accelerator: 'CmdOrCtrl+0',
+      enabled: true,
+      click: function() {
+        if (mainWindow === null) {
+          createWindow();
+        }
       }
-    ]
-  },
-  {
-    label: 'Edit',
-    submenu: [
-      {role: 'undo'},
-      {role: 'redo'},
-      {type: 'separator'},
-      {role: 'cut'},
-      {role: 'copy'},
-      {role: 'paste'},
-      {role: 'pasteandmatchstyle'},
-      {role: 'delete'},
-      {role: 'selectall'}
-    ]
-  },
-  {
-    label: 'View',
-    submenu: [
-      {role: 'reload'},
-      {role: 'forcereload'},
-      {role: 'toggledevtools'},
-      {type: 'separator'},
-      {role: 'resetzoom'},
-      {role: 'zoomin'},
-      {role: 'zoomout'},
-      {type: 'separator'},
-      {role: 'togglefullscreen'}
-    ]
-  },
-  {
-    role: 'window',
-    submenu: [
-      {role: 'minimize'},
-      {role: 'close'}
-    ]
-  },
-];
-
+    }
+  ]
+}];
+let menuTemplateForOpening = menuTemplate.concat(menuForOpening);
+let menuTemplateForClosing = menuTemplate.concat(menuForClosing);
 let mainWindow;
-let open_btn;
-let open_path;
-let result;
-let menu = Menu.buildFromTemplate(menuTemplate);
+let menu;
 
-function createWindow() {
+const createWindow = () => {
+  menu = Menu.buildFromTemplate(menuTemplateForOpening);
   Menu.setApplicationMenu(menu);
   mainWindow = new BrowserWindow({
     width: 790,
@@ -96,21 +69,15 @@ function createWindow() {
   });
 }
 
-function showAboutDialog() {
-  dialog.showMessageBox({
-    type: 'info',
-    buttons: ['OK'],
-    message: 'About Gate',
-    detail: 'This App is able to open any path.'
-  });
+const windowClose = () => {
+  mainWindow.close();
 }
 
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  menu = Menu.buildFromTemplate(menuTemplateForClosing);
+  Menu.setApplicationMenu(menu);
 });
 
 app.on('activate', () => {
@@ -120,11 +87,11 @@ app.on('activate', () => {
 });
 
 ipcMain.on('esc_key_down', function() {
-  mainWindow.close();
+  windowClose();
 });
 
 ipcMain.on('window_close', function() {
-  mainWindow.close();
+  windowClose();
 });
 
 ipcMain.on('window_minimize', function() {
