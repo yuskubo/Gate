@@ -1,18 +1,19 @@
 "use strict";
 
 const electron = require('electron');
+const app_info = require('./package.json');
 const dialog = electron.dialog;
 const Gate = {
-  label: 'Gate',
+  label: app_info.name,
   submenu:[
     {
-      label: 'About Gate',
+      label: 'About ' + app_info.name,
       accelerator: 'CmdOrCtrl+Shift+A',
       click: function() { showAboutDialog(); }
     },
     { type: 'separator'},
     {
-      label: 'Quit Gate',
+      label: 'Quit ' + app_info.name,
       role: 'quit',
       accelerator: 'CmdOrCtrl+Q',
     }
@@ -51,8 +52,8 @@ const showAboutDialog = () => {
   dialog.showMessageBox({
     type: 'info',
     buttons: ['OK'],
-    message: 'Gate',
-    detail: 'Version 1.0.1'
+    message: app_info.name,
+    detail: 'Version ' + app_info.version
   });
 }
 
