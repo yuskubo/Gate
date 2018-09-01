@@ -13,15 +13,15 @@ When you input a path and click the "Open" button or press "Enter", Finder of Ma
 
 This application enables to open the following examples.
 
-For Example:
-When accessing a folder on your PC, it is necessary to start writing the path from "/" or "¥" or "\".
+For Example:  
+When accessing a folder on your PC, it is necessary to start writing the path from "/" or "¥" or "\\".
 ```
 /users/hoge/demo/demo.rtf
 ¥users¥hoge¥demo¥demo.rtf
 \users\hoge\demo\demo.rtf
 ```
 
-When accessing a folder on the network, it is necessary to start writing the path with "//" or "\\" or "\\" or "A to Z alphabet:".
+When accessing a folder on the network, it is necessary to start writing the path with "//" or "¥¥" or "\\\\" or "A to Z alphabet:".
 ```
 //G:/teamdrive/share
 ¥¥G:¥teamdrive¥share
