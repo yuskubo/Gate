@@ -11,11 +11,17 @@ const keydown = 'keydown'
 const esc_key_down = 'esc_key_down'
 
 let open_btn;
-let path;
+let path_for_mac;
+let path_to_volumes;
+let path_for_googledrive;
+let pattern_for_mac;
+let pattern_for_volumes;
+let pattern_for_googledrive;
+let pattern_for_otherdrive;
+let path_result;
 let open_path;
 let directory_path;
 let downed_key;
-let result;
 
 const outputAlert = () => {
   document.getElementsByClassName('alertarea')[0].innerHTML = alertMessage;
@@ -34,9 +40,28 @@ const openDirectoryPath = open_path => {
 }
 
 const replaceSeparatorForMac = value => {
-  path = value.replace(/\\|¥/g, '/').replace(/\/\/[^\/]*/, '/Volumes').replace(/^G:|^g:/, '/Volumes/GoogleDrive').replace(/^[a-zA-Z]:/, '/Volumes');
-  if (fs.existsSync(path)) {
-    openDirectoryPath(path);
+  pattern_for_mac = new RegExp(/\\|¥/, 'g');
+  path_for_mac = value.replace(pattern_for_mac, '/');
+
+  if (fs.existsSync('/Volumes/GoogleDrive')) {
+    pattern_for_googledrive = new RegExp(/^G:|^g:|^\/\/G:|^\/\/g:/);
+    path_for_googledrive = path_for_mac.replace(pattern_for_googledrive, '/Volumes/GoogleDrive');
+
+    pattern_for_volumes = new RegExp(/\/\/[^\/]*/);
+    path_to_volumes = path_for_googledrive.replace(pattern_for_volumes, '/Volumes');
+
+    pattern_for_otherdrive = new RegExp(/^[a-zA-Z]:/);
+    path_result = path_to_volumes.replace(pattern_for_otherdrive, '/Volumes');
+  } else {
+    pattern_for_volumes = new RegExp(/\/\/[^\/]*/);
+    path_to_volumes = path_for_mac.replace(pattern_for_volumes, '/Volumes');
+
+    pattern_for_otherdrive = new RegExp(/^[a-zA-Z]:/);
+    path_result = path_to_volumes.replace(pattern_for_otherdrive, '/Volumes');
+  }
+
+  if (fs.existsSync(path_result)) {
+    openDirectoryPath(path_result);
   } else {
     outputAlert();
   }
