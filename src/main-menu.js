@@ -1,7 +1,7 @@
 "use strict";
 
 const electron = require('electron');
-const app_info = require('../package.json');
+const app_info = require('./package.json');
 const dialog = electron.dialog;
 const Gate = {
   label: app_info.name,
