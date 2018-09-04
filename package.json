@@ -1,15 +1,18 @@
 {
   "name": "Gate",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.2",
+  "description": "Gate is an application for opening a folder on Finder",
   "main": "main.js",
   "scripts": {
     "start": "electron src/main.js"
   },
-  "keywords": [],
   "author": "@Yusuke Kubo",
   "devDependencies": {
     "electron": "^2.0.8",
     "electron-packager": "^6.1.0"
+  },
+  "mac": {
+      "category": "public.app-category.utilities",
+      "electronLanguages": ["en","ja"]
   }
 }
