@@ -8,6 +8,9 @@ const Menu = electron.Menu;
 const url = require('url');
 const path = require('path');
 const menuTemplate = require('./main-menu');
+const escKeyDown= 'esc_key_down';
+const windowClose= 'window_close';
+const windowMinimize= 'window_minimize';
 const menuForOpening = [{
   label: 'Window',
   submenu: [
@@ -69,10 +72,6 @@ const createWindow = () => {
   });
 }
 
-const windowClose = () => {
-  mainWindow.close();
-}
-
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
@@ -86,14 +85,14 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on('esc_key_down', function() {
-  windowClose();
+ipcMain.on(escKeyDown, function() {
+  mainWindow.close();
 });
 
-ipcMain.on('window_close', function() {
-  windowClose();
+ipcMain.on(windowClose, function() {
+  mainWindow.close();
 });
 
-ipcMain.on('window_minimize', function() {
+ipcMain.on(windowMinimize, function() {
   mainWindow.minimize();
 });
