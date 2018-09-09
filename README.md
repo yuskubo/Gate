@@ -5,7 +5,7 @@ By using this application 'Gate', you can open the path of Windows with Mac.You 
 ![description gif](https://raw.githubusercontent.com/wiki/zetton-31/Gate/images/description.gif)
 
 ## Description
-You can open not only the path of local folder but also the path of the folder on Google Drive and NAS.  
+You can open not only the path of local folder but also the path of the folder on Google Drive and NAS mounted under '/Volumes'.  
 Therefore, Gate is particularly effective for sharing a path on the team that Mac users and Windows users belong on.
 
 How To Use:  
@@ -21,7 +21,8 @@ When accessing a folder on your PC, it is necessary to start writing the path fr
 \users\hoge\demo\demo.rtf
 ```
 
-When accessing a folder on the network, it is necessary to start writing the path with "//" or "¥¥" or "\\\\" or "A to Z alphabet:".
+You can access folders on the network by starting to write the path with "//" or "¥¥" or "\\\\" or "A to Z alphabet:".  
+However, when opening folders on the network, you need to mount the target folder under '/Volumes' in advance.
 ```
 //G:/teamdrive/share
 ¥¥G:¥teamdrive¥share
