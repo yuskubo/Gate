@@ -5,83 +5,88 @@ const shell = require('electron').shell;
 const fs = require('fs');
 
 const alertMessage = 'No such file or directory';
-const enter = 'Enter'
-const escape = 'Escape'
-const keydown = 'keydown'
-const esc_key_down = 'esc_key_down'
+const enter = 'Enter';
+const escape = 'Escape';
+const keydown = 'keydown';
+const escKeyDown = 'esc_key_down';
 
-let open_btn;
-let path_for_mac;
-let path_to_volumes;
-let path_for_googledrive;
-let pattern_for_mac;
-let pattern_for_volumes;
-let pattern_for_googledrive;
-let pattern_for_otherdrive;
-let path_result;
-let open_path;
-let directory_path;
-let downed_key;
+let openButton;
+let tempPath;
+let pathForMac;
+let pathToVolumes;
+let patternForMac;
+let patternForVolumes;
+let patternForGoogledrive;
+let patternForOtherdrive;
+let pathResult;
+let inputPath;
+let downedKey;
 
 const outputAlert = () => {
-  document.getElementsByClassName('alertarea')[0].innerHTML = alertMessage;
+  document.getElementsByClassName('alertArea')[0].innerHTML = alertMessage;
 }
 
 const currentWindowClose = () => {
   ipcRenderer.send('window_close');
 }
 
-const openDirectoryPath = open_path => {
-  if (shell.showItemInFolder(open_path)) {
+const openDirectoryPath = path => {
+  if (shell.showItemInFolder(path)) {
     currentWindowClose();
   } else {
     outputAlert();
   }
 }
 
-const replaceSeparatorForMac = value => {
-  pattern_for_mac = new RegExp(/\\|¥/, 'g');
-  path_for_mac = value.replace(pattern_for_mac, '/');
+const replaceSeparatorForMac = path => {
+  patternForMac = new RegExp(/\\|¥/, 'g');
+  return path.replace(patternForMac, '/');
+}
+
+const formatForGoogleDrive = path => {
+  patternForGoogledrive = new RegExp(/^G:|^g:|^\/\/G:|^\/\/g:/);
+  return pathForMac.replace(patternForGoogledrive, '/Volumes/GoogleDrive');
+}
+
+const formatForNetworkDrive = path => {
+  patternForVolumes = new RegExp(/\/\/[^\/]*/);
+  pathToVolumes = path.replace(patternForVolumes, '/Volumes');
+
+  patternForOtherdrive = new RegExp(/^[a-zA-Z]:/);
+  return pathToVolumes.replace(patternForOtherdrive, '/Volumes');
+}
+
+const formatPathForMac = path => {
+  tempPath = replaceSeparatorForMac(path);
 
   if (fs.existsSync('/Volumes/GoogleDrive')) {
-    pattern_for_googledrive = new RegExp(/^G:|^g:|^\/\/G:|^\/\/g:/);
-    path_for_googledrive = path_for_mac.replace(pattern_for_googledrive, '/Volumes/GoogleDrive');
-
-    pattern_for_volumes = new RegExp(/\/\/[^\/]*/);
-    path_to_volumes = path_for_googledrive.replace(pattern_for_volumes, '/Volumes');
-
-    pattern_for_otherdrive = new RegExp(/^[a-zA-Z]:/);
-    path_result = path_to_volumes.replace(pattern_for_otherdrive, '/Volumes');
-  } else {
-    pattern_for_volumes = new RegExp(/\/\/[^\/]*/);
-    path_to_volumes = path_for_mac.replace(pattern_for_volumes, '/Volumes');
-
-    pattern_for_otherdrive = new RegExp(/^[a-zA-Z]:/);
-    path_result = path_to_volumes.replace(pattern_for_otherdrive, '/Volumes');
+    tempPath = formatForGoogleDrive(tempPath);
   }
 
-  if (fs.existsSync(path_result)) {
-    openDirectoryPath(path_result);
+  pathResult = formatForNetworkDrive(tempPath);
+
+  if (fs.existsSync(pathResult)) {
+    openDirectoryPath(pathResult);
   } else {
     outputAlert();
   }
 }
 
-open_btn = document.getElementById('open_btn');
-directory_path = document.getElementById('directory_path')
-open_btn.addEventListener('click', function() {
-  replaceSeparatorForMac(directory_path.value);
+openButton = document.getElementById('openButton');
+inputPath = document.getElementById('inputPath')
+openButton.addEventListener('click', function() {
+  formatPathForMac(inputPath.value);
 });
 
 document.addEventListener(keydown, function(){
-  downed_key = event.key;
-  if (downed_key === escape){
-    ipcRenderer.send(esc_key_down);
+  downedKey = event.key;
+  if (downedKey === escape){
+    ipcRenderer.send(escKeyDown);
   }
 });
 
 const enterKeyDown = key_code => {
 	if(key_code === enter) {
-    replaceSeparatorForMac(directory_path.value);
+    formatPathForMac(inputPath.value);
 	}
 }
