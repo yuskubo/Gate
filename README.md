@@ -9,7 +9,8 @@ You can open not only the path of local folder but also the path of the folder o
 Therefore, Gate is particularly effective for sharing a path on the team that Mac users and Windows users belong on.
 
 How To Use:  
-When you input a path and click the "Open" button or press "Enter", Finder of Mac opens.In addition, when you type the file name that you would like to open, the file is selected on Finder in opening the folder.
+When you input a path and click the "Open" button or press "Enter", Finder of Mac opens.  
+In addition, when you type the file name that you would like to open, the file is selected on Finder in opening the folder.
 
 This application enables to open the following examples.
 
