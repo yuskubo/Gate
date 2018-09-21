@@ -12,7 +12,6 @@ const escKeyDown = 'esc_key_down';
 
 let openButton;
 let tempPath;
-let pathForMac;
 let pathToVolumes;
 let patternForMac;
 let patternForVolumes;
@@ -45,7 +44,7 @@ const replaceSeparatorForMac = path => {
 
 const formatForGoogleDrive = path => {
   patternForGoogledrive = new RegExp(/^G:|^g:|^\/\/G:|^\/\/g:/);
-  return pathForMac.replace(patternForGoogledrive, '/Volumes/GoogleDrive');
+  return path.replace(patternForGoogledrive, '/Volumes/GoogleDrive');
 }
 
 const formatForNetworkDrive = path => {
