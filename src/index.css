@@ -1,6 +1,7 @@
 html,
 body {
   background-color: #2b2e3b;
+  -webkit-app-region: drag;
 }
 #inputPath {
   background-color: #3a585f;
@@ -24,6 +25,7 @@ body {
 }
 #openButton {
   background-color: #6798a2;
+  -webkit-app-region: no-drag;
   color:#2b2e3b;
   border: none;
   border-radius: 25px;

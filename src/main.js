@@ -54,7 +54,8 @@ const createWindow = () => {
     backgroundcolor: '#2b2e3b',
     frame: true,
     titleBarStyle: 'hidden',
-    transparent: false
+    transparent: false,
+    movable: true
   });
 
   mainWindow.focus();
